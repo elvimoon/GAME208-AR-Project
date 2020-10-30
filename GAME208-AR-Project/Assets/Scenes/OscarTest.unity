@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 102507826}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474766885}
   m_RootOrder: 0
@@ -317,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 474766884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 102507827}
   m_Father: {fileID: 0}
@@ -336,7 +336,6 @@ GameObject:
   - component: {fileID: 883642919}
   - component: {fileID: 883642918}
   - component: {fileID: 883642917}
-  - component: {fileID: 883642921}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: MainCamera
@@ -441,24 +440,6 @@ Transform:
   m_Father: {fileID: 193139439}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &883642921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883642915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Device: 0
-  m_PoseSource: 2
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 0
-  m_UpdateType: 1
-  m_UseRelativeTransform: 0
 --- !u!1 &1727989333
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d8d0577167d3b4097c85c3b55e221f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToPlace: {fileID: 8567529952508796921, guid: 95ba833eba7c2324489bc53ae9842e9e, type: 3}
   placementIndicator: {fileID: 474766884}
 --- !u!4 &1789691986
 Transform:
@@ -555,7 +537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789691984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.010084003, y: 0.029978707, z: -0.009688459}
+  m_LocalPosition: {x: 0, y: 0.02907871, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

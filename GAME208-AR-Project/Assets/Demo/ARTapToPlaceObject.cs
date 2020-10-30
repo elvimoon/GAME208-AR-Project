@@ -8,7 +8,9 @@ using System;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
+    public GameObject objectToPlace;
     public GameObject placementIndicator;
+
     private Pose placementPose; //represent position and position in space of a 3d point
     private ARRaycastManager arOrigin;
     private bool placementPoseIsValid = false;
@@ -24,6 +26,17 @@ public class ARTapToPlaceObject : MonoBehaviour
         UpdatePlacementPose();
         //update our indicator visual position every frame
         UpdatePlacementIndicator();
+
+        //check if indicator is active and if user has tapped the screen
+        if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            PlaceObject();
+        }
+    }
+
+    private void PlaceObject()
+    {
+        Instantiate(objectToPlace, placementPose.position, objectToPlace.transform.rotation);
     }
 
     private void UpdatePlacementIndicator()
@@ -57,6 +70,16 @@ public class ARTapToPlaceObject : MonoBehaviour
         if (placementPoseIsValid)
         {
             placementPose = hits[0].pose;
+
+            //acts as arrow describing direction camera facing along x,y,z axis
+            var cameraForward = Camera.current.transform.forward;
+
+            //dont care how much camera points toward sky or ground, only the bearing
+            //this setup will give bearing as though y was perfectly vertical
+            var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+
+            placementPose.rotation = Quaternion.LookRotation(cameraBearing);
+
         }
     }
 
