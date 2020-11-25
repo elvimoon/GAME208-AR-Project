@@ -6,7 +6,7 @@ public class Destroy : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Delete"))
+        if (collision.gameObject.CompareTag("MovingObject"))
         {
             Destroy(gameObject);
         }

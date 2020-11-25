@@ -35,13 +35,22 @@ public class ARTapToPlaceObject : MonoBehaviour
     private bool placementPoseIsValid = false;
     private bool isDeleteValid = false;
     private bool isPlacementDead = false;
+    private bool didAnimPlay = false;
+    private bool diddeleteAnimPlay = false;
+
+    private Indicator_Anim rotate;
+   // private Delete_Anim shake;
 
     void Start()
     {
-        arOrigin = FindObjectOfType<ARRaycastManager>();
-
         //disable the delete key until you activate it with delete toggle button
         Delete.SetActive(false);
+
+        rotate = GameObject.FindGameObjectWithTag("Rotate").GetComponent<Indicator_Anim>();
+      //  shake = GameObject.FindGameObjectWithTag("Shake").GetComponent<Delete_Anim>();
+
+        arOrigin = FindObjectOfType<ARRaycastManager>();
+
     }
 
     void Awake()
@@ -50,7 +59,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         ChangePrefabTo("None");
 
         //set prefab to prefabname on button click
-        checkerboardButton.onClick.AddListener(() => ChangePrefabTo("CheckerBoard 1"));
+        checkerboardButton.onClick.AddListener(() => ChangePrefabTo("CheckerBoard 2"));
         whitePieceButton.onClick.AddListener(() => ChangePrefabTo("CheckerPieceWhite"));
         blackPieceButton.onClick.AddListener(() => ChangePrefabTo("CheckerPieceBlack"));
         enableDeleteButton.onClick.AddListener(EnableDelete);
@@ -67,7 +76,7 @@ public class ARTapToPlaceObject : MonoBehaviour
    
         //prevent more than one checkerboard from spawning
         if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began 
-            && Resources.Load<GameObject>("Demo/CheckerBoard 1") == isActiveAndEnabled)
+            && Resources.Load<GameObject>("Demo/Prefabs/CheckerBoard 2") == isActiveAndEnabled)
         {
             PlaceObject();
             ChangePrefabTo("None");
@@ -83,6 +92,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         if (isDeleteValid == false && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             enableDeleteButton.onClick.AddListener(EnableDelete);
+           // shake.deleteRotate();
         }
         if (isDeleteValid == true && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -139,6 +149,13 @@ public class ARTapToPlaceObject : MonoBehaviour
 
             //control position and rotation of indicator
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+
+            if (didAnimPlay == false)
+            {
+                rotate.indicatorRotate();
+                rotate.indicatorRotate();
+                didAnimPlay = true;
+            }
         }
         else
         {
@@ -176,7 +193,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     void ChangePrefabTo(string prefabName)
     {
-        objectToPlace = Resources.Load<GameObject>($"Demo/{prefabName}");
+        objectToPlace = Resources.Load<GameObject>($"Demo/Prefabs/{prefabName}");
 
         if (objectToPlace == null)
         {

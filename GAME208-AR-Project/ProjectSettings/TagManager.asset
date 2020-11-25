@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Delete
   - Prefab
+  - MovingObject
+  - Rotate
   layers:
   - Default
   - TransparentFX
